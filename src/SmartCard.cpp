@@ -291,9 +291,12 @@ bool SmartCard::readerHasPinPad() const
 ResponseApdu SmartCard::transmit(const CommandApdu& command) const
 {
     REQUIRE_NON_NULL(card)
+    /*
+    // TODO: a workaround to not having access to beginTransaction in the main code
     if (!transactionInProgress) {
         THROW(std::logic_error, "Call SmartCard::transmit() inside a transaction");
     }
+     */
 
     return card->transmitBytes(command.toBytes());
 }
